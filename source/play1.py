@@ -22,8 +22,7 @@ board = utils.create_board()
 game_over = False
 winner = None
 
-# Hệ thống quản lý màn hình: 
-# 'MENU_ALGO' (Chọn thuật toán) -> 'MENU_TURN' (Chọn lượt đi) -> 'PLAYING' (Trong trận)
+
 game_state = 'MENU_ALGO' 
 
 
@@ -83,7 +82,7 @@ def draw_board():
             2
         )
 
-    # 2. Vẽ các đường ngang trên bàn cờ (ĐÃ SỬA LỖI TỌA ĐỘ TẠI ĐÂY)
+    # 2. Vẽ các đường ngang trên bàn cờ 
     for i in range(utils.BOARD_SIZE):
         y = MARGIN + i * CELL_SIZE
         pygame.draw.line(
@@ -143,21 +142,21 @@ while running:
                 board = utils.create_board()
                 game_over = False
                 winner = None
-                game_state = 'MENU_ALGO'  # Quay về màn hình chọn thuật toán ban đầu
+                game_state = 'MENU_ALGO'  
 
         if event.type == pygame.MOUSEBUTTONDOWN:
             mx, my = pygame.mouse.get_pos()
 
-            # Xử lý Click tại màn hình chọn thuật toán
+  
             if game_state == 'MENU_ALGO':
                 if WIDTH // 2 - 160 <= mx <= WIDTH // 2 + 160 and HEIGHT // 2 - 50 <= my <= HEIGHT // 2:
-                    AI.USE_ALPHA_BETA = False  # Tắt cắt tỉa Alpha-Beta
+                    AI.USE_ALPHA_BETA = False  
                     game_state = 'MENU_TURN'
                 elif WIDTH // 2 - 160 <= mx <= WIDTH // 2 + 160 and HEIGHT // 2 + 30 <= my <= HEIGHT // 2 + 80:
-                    AI.USE_ALPHA_BETA = True   # Bật cắt tỉa Alpha-Beta
+                    AI.USE_ALPHA_BETA = True   
                     game_state = 'MENU_TURN'
 
-            # Xử lý Click tại màn hình chọn lượt đi
+
             elif game_state == 'MENU_TURN':
                 if WIDTH // 2 - 140 <= mx <= WIDTH // 2 + 140 and HEIGHT // 2 - 50 <= my <= HEIGHT // 2:
                     game_state = 'PLAYING'
@@ -165,7 +164,7 @@ while running:
                     game_state = 'PLAYING'
                     AI.ai_move(board)
 
-            # Xử lý sự kiện đánh cờ trong trận đấu
+            
             elif game_state == 'PLAYING' and not game_over:
                 col = round((mx - MARGIN) / CELL_SIZE)
                 row = round((my - MARGIN) / CELL_SIZE)
