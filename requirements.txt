@@ -1,0 +1,5 @@
+## :pushpin: Yêu Cầu Hệ Thống (Requirement)
+Để chạy được chương trình, máy tính của bạn cần cài đặt thư viện thư viện `pygame`:
+```
+pip install pygame
+```
